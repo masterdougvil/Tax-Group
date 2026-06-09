@@ -1,0 +1,1862 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NorthBridge Tax Group — Tax Services You Can Trust</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --primary:    #1a1a1a;
+      --secondary:  #3d3530;
+      --accent:     #c8a97e;
+      --accent-dark:#a8845a;
+      --bg:         #faf9f7;
+      --bg-warm:    #f4f1ec;
+      --bg-card:    #ffffff;
+      --text:       #1a1a1a;
+      --text-muted: #7a7570;
+      --text-light: #b0aba5;
+      --border:     rgba(26,26,26,0.08);
+      --shadow-sm:  0 2px 12px rgba(26,26,26,0.06);
+      --shadow-md:  0 8px 40px rgba(26,26,26,0.10);
+      --shadow-lg:  0 24px 80px rgba(26,26,26,0.12);
+      --font-display: 'Cormorant Garamond', serif;
+      --font-body:    'DM Sans', sans-serif;
+      --radius:     4px;
+      --radius-lg:  12px;
+      --transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(32px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    @keyframes shimmer {
+      0%   { transform: translateX(-100%); }
+      100% { transform: translateX(200%); }
+    }
+    @keyframes lineDraw {
+      from { width: 0; }
+      to   { width: 48px; }
+    }
+    @keyframes pulse-soft {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.6; }
+    }
+
+    .anim-1 { animation: fadeUp 0.7s ease both; }
+    .anim-2 { animation: fadeUp 0.7s 0.12s ease both; }
+    .anim-3 { animation: fadeUp 0.7s 0.24s ease both; }
+    .anim-4 { animation: fadeUp 0.7s 0.36s ease both; }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 0 5%;
+      height: 96px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(250,249,247,0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      transition: var(--transition);
+    }
+    nav.scrolled {
+      box-shadow: var(--shadow-sm);
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 4rem;
+      font-weight: 500;
+      color: var(--primary);
+      letter-spacing: 0.02em;
+      text-decoration: none;
+      line-height: 1;
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-logo small {
+      display: block;
+      font-size: 1rem;
+      font-weight: 400;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      font-family: var(--font-body);
+      margin-top: 4px;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.875rem;
+      font-weight: 400;
+      color: var(--text-muted);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--primary); }
+    .nav-cta {
+      background: var(--primary) !important;
+      color: var(--bg) !important;
+      padding: 10px 24px;
+      border-radius: 2px;
+      font-weight: 500 !important;
+      font-size: 0.8rem !important;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: var(--transition) !important;
+    }
+    .nav-cta:hover {
+      background: var(--accent) !important;
+      color: white !important;
+    }
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .nav-hamburger span {
+      width: 24px; height: 1.5px;
+      background: var(--primary);
+      border-radius: 1px;
+      transition: var(--transition);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding: 120px 5% 80px;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 70% 50%, rgba(200,169,126,0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 40% at 10% 80%, rgba(200,169,126,0.05) 0%, transparent 50%);
+    }
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(26,26,26,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(26,26,26,0.025) 1px, transparent 1px);
+      background-size: 80px 80px;
+    }
+    .hero-content {
+      position: relative;
+      max-width: 700px;
+    }
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 28px;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 32px; height: 1px;
+      background: var(--accent);
+    }
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 3vw, 2.8rem);
+      font-weight: 300;
+      line-height: 1.2;
+      color: var(--primary);
+      margin-bottom: 28px;
+      letter-spacing: 0em;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+    .hero-brand-main {
+      display: block;
+      font-size: clamp(5rem, 13vw, 12rem);
+      letter-spacing: -0.04em;
+      line-height: 0.9;
+    }
+    .hero-tagline {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-style: normal;
+      font-weight: 300;
+      color: var(--text-muted);
+      letter-spacing: 0.01em;
+      margin-bottom: 16px;
+    }
+    .hero-tagline em {
+      font-style: italic;
+      color: var(--accent);
+    }
+    .hero-desc {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 520px;
+      margin-bottom: 48px;
+      line-height: 1.75;
+      font-weight: 300;
+    }
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--primary);
+      color: var(--bg);
+      padding: 16px 36px;
+      border-radius: 2px;
+      font-weight: 500;
+      font-size: 0.875rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+      transition: var(--transition);
+    }
+    .btn-primary::after {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
+      transition: left 0.5s ease;
+    }
+    .btn-primary:hover { background: var(--accent); }
+    .btn-primary:hover::after { left: 200%; }
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-muted);
+      font-size: 0.875rem;
+      font-weight: 400;
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 2px;
+      transition: var(--transition);
+    }
+    .btn-secondary:hover { color: var(--primary); border-color: var(--primary); }
+
+    .hero-stats {
+      display: flex;
+      gap: 48px;
+      margin-top: 56px;
+      padding-top: 40px;
+      border-top: 1px solid var(--border);
+    }
+    .stat-item { text-align: left; }
+    .stat-number {
+      font-family: var(--font-display);
+      font-size: 2.6rem;
+      font-weight: 300;
+      color: var(--primary);
+      line-height: 1;
+      display: block;
+    }
+    .stat-label {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-top: 5px;
+      display: block;
+    }
+
+    /* ── TRUST BAR ── */
+    .trust-bar {
+      background: var(--primary);
+      padding: 24px 5%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 48px;
+      flex-wrap: wrap;
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: rgba(250,249,247,0.65);
+      font-size: 0.8rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-weight: 400;
+    }
+    .trust-item svg { color: var(--accent); flex-shrink: 0; }
+
+    /* ── SECTIONS SHARED ── */
+    section { padding: 100px 5%; }
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-label::after {
+      content: '';
+      display: block;
+      height: 1px;
+      width: 32px;
+      background: var(--accent);
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 300;
+      color: var(--primary);
+      line-height: 1.15;
+      margin-bottom: 20px;
+      letter-spacing: -0.01em;
+    }
+    .section-title em { font-style: italic; color: var(--accent); }
+    .section-subtitle {
+      font-size: 1rem;
+      color: var(--text-muted);
+      max-width: 500px;
+      line-height: 1.75;
+      font-weight: 300;
+    }
+    .divider {
+      width: 1px;
+      height: 80px;
+      background: linear-gradient(to bottom, transparent, var(--accent), transparent);
+      margin: 0 auto;
+    }
+
+    /* ── ESTIMATOR ── */
+    .estimator-section {
+      background: var(--bg-warm);
+      position: relative;
+      overflow: hidden;
+    }
+    .estimator-section::before {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 400px; height: 400px;
+      background: radial-gradient(ellipse, rgba(200,169,126,0.1), transparent 70%);
+      pointer-events: none;
+    }
+    .estimator-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .estimator-info { padding-top: 8px; }
+    .estimator-info .section-subtitle { margin-bottom: 32px; }
+    .trust-signals {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .trust-signal {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+    .trust-signal-icon {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--accent);
+    }
+    .trust-signal-text strong {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--primary);
+      margin-bottom: 2px;
+    }
+    .trust-signal-text span {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .estimator-card {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      padding: 44px;
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--border);
+      position: relative;
+    }
+    .estimator-card-header {
+      margin-bottom: 32px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+    .estimator-card-header h3 {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 400;
+      color: var(--primary);
+      margin-bottom: 6px;
+    }
+    .estimator-card-header p {
+      font-size: 0.825rem;
+      color: var(--text-muted);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-group label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+    .form-control {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--bg);
+      color: var(--primary);
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      transition: var(--transition);
+      appearance: none;
+      outline: none;
+    }
+    .form-control:focus {
+      border-color: var(--accent);
+      background: white;
+      box-shadow: 0 0 0 3px rgba(200,169,126,0.12);
+    }
+    select.form-control {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%237a7570' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 40px;
+      cursor: pointer;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .estimate-result {
+      margin-top: 24px;
+      padding: 24px;
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      color: white;
+      display: none;
+      animation: fadeIn 0.4s ease;
+    }
+    .estimate-result.show { display: block; }
+    .estimate-result-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 6px;
+    }
+    .estimate-result-amount {
+      font-family: var(--font-display);
+      font-size: 2.8rem;
+      font-weight: 300;
+      color: white;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .estimate-result-range {
+      font-size: 0.8rem;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+    .estimate-result-breakdown {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .breakdown-item {
+      background: rgba(255,255,255,0.06);
+      border-radius: 6px;
+      padding: 10px 12px;
+    }
+    .breakdown-item-label {
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.45);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 2px;
+    }
+    .breakdown-item-value {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.9);
+    }
+
+    /* ⚠️ DISCLAIMER BOX */
+    .estimator-disclaimer {
+      margin-top: 16px;
+      padding: 16px 20px;
+      border-radius: var(--radius);
+      background: rgba(200,169,126,0.08);
+      border: 1px solid rgba(200,169,126,0.25);
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .disclaimer-icon {
+      color: var(--accent);
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .disclaimer-text {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+    .disclaimer-text strong {
+      color: var(--primary);
+      display: block;
+      margin-bottom: 3px;
+      font-size: 0.825rem;
+    }
+
+    .btn-estimate {
+      width: 100%;
+      padding: 15px;
+      background: var(--primary);
+      color: var(--bg);
+      border: none;
+      border-radius: var(--radius);
+      font-family: var(--font-body);
+      font-size: 0.825rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: var(--transition);
+      margin-top: 8px;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-estimate:hover { background: var(--accent); }
+    .btn-estimate:active { transform: scale(0.99); }
+
+    /* ── SERVICES ── */
+    .services-section { background: var(--bg); }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin-top: 64px;
+      background: var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+    .service-card {
+      background: var(--bg-card);
+      padding: 44px 36px;
+      position: relative;
+      transition: var(--transition);
+      cursor: default;
+    }
+    .service-card:hover { background: var(--primary); }
+    .service-card:hover .service-icon { background: rgba(255,255,255,0.08); color: var(--accent); }
+    .service-card:hover .service-title { color: white; }
+    .service-card:hover .service-desc { color: rgba(255,255,255,0.55); }
+    .service-card:hover .service-link { color: var(--accent); }
+    .service-icon {
+      width: 44px; height: 44px;
+      border-radius: 8px;
+      background: var(--bg-warm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      margin-bottom: 24px;
+      transition: var(--transition);
+    }
+    .service-number {
+      position: absolute;
+      top: 24px; right: 28px;
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+      color: var(--text-light);
+      letter-spacing: 0.06em;
+    }
+    .service-title {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 400;
+      color: var(--primary);
+      margin-bottom: 12px;
+      line-height: 1.3;
+      transition: var(--transition);
+    }
+    .service-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 24px;
+      font-weight: 300;
+      transition: var(--transition);
+    }
+    .service-link {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: var(--transition);
+    }
+
+    /* ── WHY US ── */
+    .why-section {
+      background: var(--primary);
+      position: relative;
+      overflow: hidden;
+    }
+    .why-section::before {
+      content: '';
+      position: absolute;
+      top: -100px; right: -100px;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(ellipse, rgba(200,169,126,0.07), transparent 60%);
+      pointer-events: none;
+    }
+    .why-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .why-left .section-label { color: var(--accent); }
+    .why-left .section-title { color: white; }
+    .why-left .section-subtitle { color: rgba(255,255,255,0.5); max-width: 400px; }
+    .why-big-stat {
+      margin-top: 48px;
+      padding-top: 40px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .why-big-number {
+      font-family: var(--font-display);
+      font-size: 5rem;
+      font-weight: 300;
+      color: var(--accent);
+      line-height: 1;
+      display: block;
+    }
+    .why-big-label {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-top: 6px;
+      display: block;
+    }
+    .why-pillars {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .why-pillar {
+      padding: 28px 32px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 6px;
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      transition: var(--transition);
+    }
+    .why-pillar:hover { background: rgba(200,169,126,0.07); border-color: rgba(200,169,126,0.15); }
+    .why-pillar-icon {
+      width: 40px; height: 40px;
+      border-radius: 8px;
+      background: rgba(200,169,126,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+    .why-pillar-title {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: white;
+      margin-bottom: 4px;
+    }
+    .why-pillar-desc {
+      font-size: 0.825rem;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.65;
+      font-weight: 300;
+    }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials-section { background: var(--bg-warm); }
+    .testimonials-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 56px;
+    }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .testimonial-card {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border);
+      transition: var(--transition);
+      position: relative;
+    }
+    .testimonial-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .testimonial-stars {
+      display: flex;
+      gap: 3px;
+      margin-bottom: 20px;
+    }
+    .star { color: var(--accent); font-size: 0.9rem; }
+    .testimonial-quote {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-style: italic;
+      color: var(--primary);
+      line-height: 1.7;
+      margin-bottom: 24px;
+      font-weight: 400;
+    }
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+    .author-avatar {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: var(--bg-warm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 1rem;
+      color: var(--accent);
+      font-weight: 500;
+      flex-shrink: 0;
+    }
+    .author-name {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--primary);
+    }
+    .author-detail {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+    .testimonial-tag {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: rgba(200,169,126,0.1);
+      padding: 4px 10px;
+      border-radius: 20px;
+    }
+
+    /* ── PROCESS ── */
+    .process-section { background: var(--bg); }
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      margin-top: 64px;
+      position: relative;
+    }
+    .process-steps::before {
+      content: '';
+      position: absolute;
+      top: 24px;
+      left: calc(12.5% + 24px);
+      right: calc(12.5% + 24px);
+      height: 1px;
+      background: linear-gradient(90deg, var(--accent), rgba(200,169,126,0.2));
+    }
+    .process-step { padding: 0 24px; text-align: center; }
+    .step-number {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: var(--accent);
+      margin: 0 auto 28px;
+      position: relative;
+      z-index: 1;
+      transition: var(--transition);
+    }
+    .process-step:hover .step-number {
+      background: var(--primary);
+      color: var(--accent);
+      border-color: var(--primary);
+    }
+    .step-title {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+    .step-desc {
+      font-size: 0.825rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+      font-weight: 300;
+    }
+
+    /* ── CTA STRIP ── */
+    .cta-section {
+      background: var(--bg-warm);
+      padding: 80px 5%;
+      text-align: center;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .cta-eyebrow {
+      font-size: 0.7rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+    .cta-headline {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 300;
+      color: var(--primary);
+      margin-bottom: 16px;
+      letter-spacing: -0.01em;
+    }
+    .cta-headline em { font-style: italic; color: var(--accent); }
+    .cta-sub {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 40px;
+      font-weight: 300;
+    }
+    .cta-actions {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 15px 36px;
+      border: 1px solid var(--primary);
+      border-radius: 2px;
+      color: var(--primary);
+      font-size: 0.825rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    .btn-outline:hover { background: var(--primary); color: var(--bg); }
+
+    /* ── CONTACT ── */
+    .contact-section { background: var(--bg); }
+    .contact-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 80px;
+    }
+    .contact-form {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      padding: 44px;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border);
+    }
+    .contact-form h3 {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 400;
+      margin-bottom: 8px;
+    }
+    .contact-form p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 28px;
+    }
+    .contact-info-items {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      margin-top: 40px;
+    }
+    .contact-info-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .contact-info-icon {
+      width: 40px; height: 40px;
+      border-radius: 8px;
+      background: var(--bg-warm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+    .contact-info-text strong {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--primary);
+      margin-bottom: 2px;
+    }
+    .contact-info-text span {
+      font-size: 0.825rem;
+      color: var(--text-muted);
+    }
+    .btn-submit {
+      width: 100%;
+      padding: 15px;
+      background: var(--primary);
+      color: var(--bg);
+      border: none;
+      border-radius: var(--radius);
+      font-family: var(--font-body);
+      font-size: 0.825rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: var(--transition);
+      margin-top: 12px;
+    }
+    .btn-submit:hover { background: var(--accent); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--primary);
+      padding: 64px 5% 32px;
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 48px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      margin-bottom: 32px;
+    }
+    .footer-brand-name {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: white;
+      margin-bottom: 16px;
+    }
+    .footer-brand-name span { color: var(--accent); }
+    .footer-brand-desc {
+      font-size: 0.825rem;
+      color: rgba(255,255,255,0.4);
+      line-height: 1.7;
+      font-weight: 300;
+      max-width: 240px;
+    }
+    .footer-col-title {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .footer-links a {
+      font-size: 0.825rem;
+      color: rgba(255,255,255,0.45);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--accent); }
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .footer-copy {
+      font-size: 0.775rem;
+      color: rgba(255,255,255,0.25);
+    }
+    .footer-legal {
+      display: flex;
+      gap: 24px;
+    }
+    .footer-legal a {
+      font-size: 0.775rem;
+      color: rgba(255,255,255,0.25);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-legal a:hover { color: var(--accent); }
+
+    /* ── MOBILE NAV OVERLAY ── */
+    .mobile-menu {
+      position: fixed;
+      inset: 0;
+      z-index: 99;
+      background: var(--bg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+      transform: translateX(100%);
+      transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+    }
+    .mobile-menu.open { transform: translateX(0); }
+    .mobile-menu a {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 300;
+      color: var(--primary);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .mobile-menu a:hover { color: var(--accent); }
+    .mobile-menu .nav-cta {
+      font-family: var(--font-body) !important;
+      font-size: 0.875rem !important;
+      padding: 12px 32px !important;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .estimator-wrapper { grid-template-columns: 1fr; gap: 48px; }
+      .why-wrapper { grid-template-columns: 1fr; gap: 48px; }
+      .contact-wrapper { grid-template-columns: 1fr; gap: 48px; }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr 1fr; }
+      .process-steps { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .process-steps::before { display: none; }
+      .hero-stats { gap: 32px; }
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 6%; }
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      section { padding: 72px 6%; }
+      .hero { padding: 100px 6% 60px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .process-steps { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; }
+      .hero-stats { gap: 32px; }
+      .estimator-card { padding: 28px 24px; }
+      .form-row { grid-template-columns: 1fr; }
+      .testimonials-header { flex-direction: column; gap: 20px; align-items: flex-start; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#services" onclick="closeMobile()">Services</a>
+    <a href="#estimator" onclick="closeMobile()">Tax Estimate</a>
+    <a href="#process" onclick="closeMobile()">How It Works</a>
+    <a href="#contact" onclick="closeMobile()">Contact</a>
+    <a href="#contact" class="btn-primary nav-cta" onclick="closeMobile()">Get Started</a>
+  </div>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <a href="#" class="nav-logo">NorthBridge<span>.</span><small>Tax Group</small></a>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#estimator">Tax Estimate</a></li>
+      <li><a href="#process">How It Works</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#contact" class="nav-cta">Get Started</a></li>
+    </ul>
+    <div class="nav-hamburger" id="hamburger" onclick="toggleMobile()">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-content">
+      <h1 class="anim-2">Your taxes,<br>done <em>right.</em><br>Every time.</h1>
+      <p class="hero-desc anim-3">We handle the complexity so you don't have to. Personalized tax preparation, planning, and representation — with the clarity and confidence you deserve.</p>
+      <div class="hero-actions anim-4">
+        <a href="#estimator" class="btn-primary">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9 7H6a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2v-3"/><path d="M9 15h3l8.5-8.5a1.5 1.5 0 0 0-3-3L9 12v3"/></svg>
+          Get My Tax Estimate
+        </a>
+        <a href="#contact" class="btn-secondary">
+          Schedule a consultation
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <span class="stat-number">18+</span>
+          <span class="stat-label">Years of experience</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">4,200+</span>
+          <span class="stat-label">Returns filed</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">99%</span>
+          <span class="stat-label">Client satisfaction</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST BAR -->
+  <div class="trust-bar">
+    <div class="trust-item">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      IRS Authorized Agents
+    </div>
+    <div class="trust-item">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22,4 12,14.01 9,11.01"/></svg>
+      CPA Certified
+    </div>
+    <div class="trust-item">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      256-bit Secure Filing
+    </div>
+    <div class="trust-item">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      All 50 States
+    </div>
+    <div class="trust-item">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+      Same-Week Filing Available
+    </div>
+  </div>
+
+  <!-- ESTIMATOR -->
+  <section class="estimator-section" id="estimator">
+    <div class="estimator-wrapper">
+      <div class="estimator-info reveal">
+        <div class="section-label">Tax Estimator</div>
+        <h2 class="section-title">Know what to<br><em>expect</em> before<br>we begin.</h2>
+        <p class="section-subtitle">Get an instant ballpark estimate based on your situation. No commitment, no email required — just clarity upfront.</p>
+
+        <div class="trust-signals" style="margin-top: 40px;">
+          <div class="trust-signal">
+            <div class="trust-signal-icon">
+              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div class="trust-signal-text">
+              <strong>100% Confidential</strong>
+              <span>Your information is never shared or stored</span>
+            </div>
+          </div>
+          <div class="trust-signal">
+            <div class="trust-signal-icon">
+              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+            </div>
+            <div class="trust-signal-text">
+              <strong>Instant Results</strong>
+              <span>Your estimate appears in seconds</span>
+            </div>
+          </div>
+          <div class="trust-signal">
+            <div class="trust-signal-icon">
+              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22,4 12,14.01 9,11.01"/></svg>
+            </div>
+            <div class="trust-signal-text">
+              <strong>No Obligation</strong>
+              <span>See the number with zero pressure to proceed</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="estimator-card reveal">
+        <div class="estimator-card-header">
+          <h3>Tax Return Estimator</h3>
+          <p>Fill in a few details to get your personalized estimate</p>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Filing Status</label>
+            <select class="form-control" id="filingStatus">
+              <option value="">Select status</option>
+              <option value="single">Single</option>
+              <option value="married_joint">Married — Joint</option>
+              <option value="married_sep">Married — Separate</option>
+              <option value="head">Head of Household</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Annual Income</label>
+            <select class="form-control" id="income">
+              <option value="">Select range</option>
+              <option value="25000">Under $25,000</option>
+              <option value="50000">$25,000 – $50,000</option>
+              <option value="75000">$50,000 – $75,000</option>
+              <option value="100000">$75,000 – $100,000</option>
+              <option value="150000">$100,000 – $150,000</option>
+              <option value="200000">$150,000 – $200,000</option>
+              <option value="300000">$200,000+</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Income Type</label>
+            <select class="form-control" id="incomeType">
+              <option value="">Select type</option>
+              <option value="w2">W-2 Employee</option>
+              <option value="self">Self-Employed / 1099</option>
+              <option value="both">Both W-2 & 1099</option>
+              <option value="investment">Investment Income</option>
+              <option value="rental">Rental Income</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Number of Dependents</label>
+            <select class="form-control" id="dependents">
+              <option value="0">None</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3+</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Additional Situations</label>
+          <select class="form-control" id="extras">
+            <option value="none">None of the below</option>
+            <option value="homeowner">Homeowner (mortgage/property tax)</option>
+            <option value="business">Business owner / LLC</option>
+            <option value="foreign">Foreign income or assets</option>
+            <option value="crypto">Cryptocurrency transactions</option>
+          </select>
+        </div>
+
+        <button class="btn-estimate" onclick="calculateEstimate()">
+          Calculate My Estimate →
+        </button>
+
+        <!-- RESULT -->
+        <div class="estimate-result" id="estimateResult">
+          <div class="estimate-result-label">Estimated Refund or Amount Owed</div>
+          <div class="estimate-result-amount" id="resultAmount">$0</div>
+          <div class="estimate-result-range" id="resultRange">Range: $0 – $0</div>
+          <div class="estimate-result-breakdown" id="resultBreakdown"></div>
+          <a href="#contact" class="btn-primary" style="width:100%;justify-content:center;border-radius:4px;font-size:0.8rem;">
+            Book a Free Consultation →
+          </a>
+        </div>
+
+        <!-- DISCLAIMER -->
+        <div class="estimator-disclaimer" id="estimatorDisclaimer" style="display:none;">
+          <div class="disclaimer-icon">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          </div>
+          <div class="disclaimer-text">
+            <strong>⚠️ This is likely a conservative estimate</strong>
+            The figure above reflects a baseline calculation. In most cases, your actual refund or savings will be <strong>higher</strong> once we apply deductions, credits, and strategies specific to your situation that this tool cannot account for. Our clients consistently see better outcomes than their initial estimate.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services-section" id="services">
+    <div class="reveal">
+      <div class="section-label">What We Do</div>
+      <h2 class="section-title">Complete tax <em>solutions</em><br>for every situation.</h2>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <span class="service-number">01</span>
+        <div class="service-icon">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        </div>
+        <h3 class="service-title">Individual Tax Preparation</h3>
+        <p class="service-desc">From simple W-2 returns to complex multi-state filings, we handle every individual return with precision and care.</p>
+        <a href="#contact" class="service-link">Learn more <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+      <div class="service-card reveal">
+        <span class="service-number">02</span>
+        <div class="service-icon">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+        </div>
+        <h3 class="service-title">Business Tax Returns</h3>
+        <p class="service-desc">LLCs, S-Corps, partnerships, and sole proprietors. We maximize business deductions and keep you fully compliant.</p>
+        <a href="#contact" class="service-link">Learn more <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+      <div class="service-card reveal">
+        <span class="service-number">03</span>
+        <div class="service-icon">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <h3 class="service-title">Tax Planning & Strategy</h3>
+        <p class="service-desc">Year-round planning to minimize what you owe next year. We find legal strategies most filers never discover.</p>
+        <a href="#contact" class="service-link">Learn more <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+      <div class="service-card reveal">
+        <span class="service-number">04</span>
+        <div class="service-icon">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3 class="service-title">IRS Audit Representation</h3>
+        <p class="service-desc">If the IRS comes knocking, we stand beside you. Our enrolled agents handle all correspondence and negotiations.</p>
+        <a href="#contact" class="service-link">Learn more <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+      <div class="service-card reveal">
+        <span class="service-number">05</span>
+        <div class="service-icon">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <h3 class="service-title">Back Taxes & Amendments</h3>
+        <p class="service-desc">Haven't filed in years? We catch you up without panic. We also file amended returns to recover money you may have missed.</p>
+        <a href="#contact" class="service-link">Learn more <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+      <div class="service-card reveal">
+        <span class="service-number">06</span>
+        <div class="service-icon">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </div>
+        <h3 class="service-title">Expat & International Taxes</h3>
+        <p class="service-desc">US citizens abroad and foreign nationals in the US face unique requirements. We navigate the complexity for you.</p>
+        <a href="#contact" class="service-link">Learn more <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section class="why-section">
+    <div class="why-wrapper">
+      <div class="why-left reveal">
+        <div class="section-label">Why NorthBridge</div>
+        <h2 class="section-title">Not just a service.<br>A <em>partnership.</em></h2>
+        <p class="section-subtitle">We believe tax preparation should feel like a weight off your shoulders, not a source of anxiety. That's the standard we hold ourselves to.</p>
+        <div class="why-big-stat">
+          <span class="why-big-number">$3.2M+</span>
+          <span class="why-big-label">Recovered for clients in 2024 alone</span>
+        </div>
+      </div>
+      <div class="why-pillars reveal">
+        <div class="why-pillar">
+          <div class="why-pillar-icon">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          </div>
+          <div>
+            <div class="why-pillar-title">Complete Transparency</div>
+            <div class="why-pillar-desc">You know exactly what we're doing, why, and what it costs — before we start. No hidden fees, no surprises.</div>
+          </div>
+        </div>
+        <div class="why-pillar">
+          <div class="why-pillar-icon">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <div>
+            <div class="why-pillar-title">Dedicated Professional</div>
+            <div class="why-pillar-desc">You'll have one point of contact who knows your full situation — not a call center, not a rotating staff.</div>
+          </div>
+        </div>
+        <div class="why-pillar">
+          <div class="why-pillar-icon">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+          <div>
+            <div class="why-pillar-title">Maximum Refund Guarantee</div>
+            <div class="why-pillar-desc">We guarantee we'll find every deduction you're entitled to — or your preparation fee is refunded.</div>
+          </div>
+        </div>
+        <div class="why-pillar">
+          <div class="why-pillar-icon">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div>
+            <div class="why-pillar-title">Year-Round Support</div>
+            <div class="why-pillar-desc">Life changes — a new job, a baby, a home purchase. We're here whenever you need guidance, not just April 15th.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="process-section" id="process">
+    <div style="text-align:center;" class="reveal">
+      <div class="section-label" style="justify-content:center;">How It Works</div>
+      <h2 class="section-title">Four steps to <em>complete</em> peace of mind.</h2>
+    </div>
+    <div class="process-steps">
+      <div class="process-step reveal">
+        <div class="step-number">01</div>
+        <div class="step-title">Free Consultation</div>
+        <p class="step-desc">We meet (in person or virtually) to understand your complete tax picture with zero pressure or commitment.</p>
+      </div>
+      <div class="process-step reveal">
+        <div class="step-number">02</div>
+        <div class="step-title">Document Collection</div>
+        <p class="step-desc">You securely upload your documents through our encrypted portal. We provide a clear checklist — nothing confusing.</p>
+      </div>
+      <div class="process-step reveal">
+        <div class="step-number">03</div>
+        <div class="step-title">Expert Preparation</div>
+        <p class="step-desc">Your dedicated CPA prepares your return, applies every eligible deduction, and performs a multi-point accuracy review.</p>
+      </div>
+      <div class="process-step reveal">
+        <div class="step-number">04</div>
+        <div class="step-title">Review & File</div>
+        <p class="step-desc">You review, approve, and we file. You receive confirmation and a complete copy of everything for your records.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials-section">
+    <div class="testimonials-header reveal">
+      <div>
+        <div class="section-label">Client Stories</div>
+        <h2 class="section-title">What our clients<br><em>say.</em></h2>
+      </div>
+      <div style="text-align:right;">
+        <div style="font-family:var(--font-display);font-size:3rem;font-weight:300;color:var(--accent);line-height:1;">4.9</div>
+        <div style="font-size:0.75rem;color:var(--text-muted);letter-spacing:0.06em;text-transform:uppercase;">Average rating</div>
+      </div>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal">
+        <span class="testimonial-tag">Individual</span>
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-quote">"I was dreading tax season after a complicated year with a job change and home purchase. Meridian made it completely painless — and I got back $3,800 more than I expected."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">S</div>
+          <div>
+            <div class="author-name">Sandra K.</div>
+            <div class="author-detail">Miami, FL — Individual Filing</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal">
+        <span class="testimonial-tag">Business</span>
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-quote">"As a small business owner, I was always anxious about the IRS. Working with Meridian has given me genuine peace of mind. They found deductions my previous accountant missed for years."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">R</div>
+          <div>
+            <div class="author-name">Rafael M.</div>
+            <div class="author-detail">Houston, TX — LLC Return</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal">
+        <span class="testimonial-tag">IRS Audit</span>
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-quote">"I received an IRS audit letter and panicked. Meridian stepped in, handled every single communication, and the audit resolved in our favor completely. I don't know what I would have done without them."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">L</div>
+          <div>
+            <div class="author-name">Linda T.</div>
+            <div class="author-detail">Atlanta, GA — Audit Representation</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA STRIP -->
+  <div class="cta-section reveal">
+    <div class="cta-eyebrow">Ready to Start?</div>
+    <h2 class="cta-headline">Tax season doesn't<br>have to be <em>stressful.</em></h2>
+    <p class="cta-sub">Your first consultation is completely free. No pressure, no commitment.</p>
+    <div class="cta-actions">
+      <a href="#contact" class="btn-primary">
+        Schedule Free Consultation
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="tel:+13055550000" class="btn-outline">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.38 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.13 6.13l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        Call (305) 555-0000
+      </a>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <section class="contact-section" id="contact">
+    <div class="contact-wrapper">
+      <div class="reveal">
+        <div class="section-label">Contact Us</div>
+        <h2 class="section-title">Let's talk<br>about your <em>taxes.</em></h2>
+        <p class="section-subtitle">Whether you have one question or need a full review, we're here — and we respond within one business day.</p>
+        <div class="contact-info-items">
+          <div class="contact-info-item">
+            <div class="contact-info-icon">
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.38 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.13 6.13l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <div class="contact-info-text">
+              <strong>(305) 555-0000</strong>
+              <span>Mon – Fri, 9am – 6pm EST</span>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-icon">
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div class="contact-info-text">
+              <strong>hello@northbridgetax.com</strong>
+              <span>We respond within 24 business hours</span>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-icon">
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div class="contact-info-text">
+              <strong>1200 Brickell Ave, Suite 500</strong>
+              <span>Miami, FL 33131 · Virtual appointments available</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form reveal">
+        <h3>Send a Message</h3>
+        <p>We'll get back to you within one business day.</p>
+        <div class="form-row">
+          <div class="form-group">
+            <label>First Name</label>
+            <input type="text" class="form-control" placeholder="John">
+          </div>
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" class="form-control" placeholder="Doe">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" class="form-control" placeholder="john@email.com">
+        </div>
+        <div class="form-group">
+          <label>Phone (optional)</label>
+          <input type="tel" class="form-control" placeholder="(305) 000-0000">
+        </div>
+        <div class="form-group">
+          <label>What do you need help with?</label>
+          <select class="form-control">
+            <option>Individual Tax Return</option>
+            <option>Business Tax Return</option>
+            <option>Tax Planning</option>
+            <option>IRS Audit / Issue</option>
+            <option>Back Taxes / Amendment</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea class="form-control" rows="3" placeholder="Tell us a bit about your situation..." style="resize:vertical;"></textarea>
+        </div>
+        <button class="btn-submit">Send Message →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand-name">NorthBridge<span>.</span></div>
+        <p class="footer-brand-desc">Professional tax preparation and advisory services. Serving individuals, families, and businesses across all 50 states since 2006.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Services</div>
+        <ul class="footer-links">
+          <li><a href="#">Individual Returns</a></li>
+          <li><a href="#">Business Returns</a></li>
+          <li><a href="#">Tax Planning</a></li>
+          <li><a href="#">IRS Representation</a></li>
+          <li><a href="#">Expat Taxes</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Company</div>
+        <ul class="footer-links">
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Our Team</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Resources</a></li>
+          <li><a href="#">Blog</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Contact</div>
+        <ul class="footer-links">
+          <li><a href="tel:+13055550000">(305) 555-0000</a></li>
+          <li><a href="mailto:hello@northbridgetax.com">hello@northbridgetax.com</a></li>
+          <li><a href="#">Client Portal Login</a></li>
+          <li><a href="#">Book Appointment</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2026 NorthBridge Tax Group LLC. All rights reserved. Not affiliated with the IRS.</span>
+      <div class="footer-legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Disclaimer</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ── NAV SCROLL ──
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 30);
+    });
+
+    // ── MOBILE MENU ──
+    function toggleMobile() {
+      document.getElementById('mobileMenu').classList.toggle('open');
+    }
+    function closeMobile() {
+      document.getElementById('mobileMenu').classList.remove('open');
+    }
+
+    // ── SCROLL REVEAL ──
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), i * 60);
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(el => observer.observe(el));
+
+    // ── TAX ESTIMATOR ──
+    function calculateEstimate() {
+      const filing = document.getElementById('filingStatus').value;
+      const income = parseFloat(document.getElementById('income').value);
+      const incomeType = document.getElementById('incomeType').value;
+      const deps = parseInt(document.getElementById('dependents').value);
+      const extras = document.getElementById('extras').value;
+
+      if (!filing || !income || !incomeType) {
+        alert('Please fill in all required fields to get your estimate.');
+        return;
+      }
+
+      // Standard deductions 2024
+      const standardDed = { single: 14600, married_joint: 29200, married_sep: 14600, head: 21900 };
+      const std = standardDed[filing] || 14600;
+
+      // Child tax credit
+      const childCredit = deps >= 1 ? deps * 2000 : 0;
+
+      // Self-employment adjustment
+      let seAdjust = 0;
+      if (incomeType === 'self') seAdjust = income * 0.0765;
+      if (incomeType === 'both') seAdjust = income * 0.03;
+
+      // Taxable income
+      let taxable = Math.max(0, income - std - seAdjust);
+
+      // Extra deductions
+      let extraDed = 0;
+      if (extras === 'homeowner') extraDed = Math.min(income * 0.055, 18000);
+      if (extras === 'business') extraDed = income * 0.18;
+
+      taxable = Math.max(0, taxable - extraDed);
+
+      // Tax brackets 2024 (simplified, single base)
+      let tax = 0;
+      const brackets = [
+        [11600, 0.10], [33550, 0.12], [47150, 0.22],
+        [100525, 0.24], [191950, 0.32], [243725, 0.35], [Infinity, 0.37]
+      ];
+      let prev = 0;
+      for (const [top, rate] of brackets) {
+        if (taxable <= 0) break;
+        const chunk = Math.min(taxable, top - prev);
+        tax += chunk * rate;
+        taxable -= chunk;
+        prev = top;
+      }
+
+      // Married joint gets ~30% more advantaged bracket space
+      if (filing === 'married_joint') tax *= 0.72;
+      if (filing === 'head') tax *= 0.87;
+
+      // Apply credits
+      tax = Math.max(0, tax - childCredit);
+
+      // Withholding estimate (assume ~22% withheld)
+      const withheld = income * 0.22;
+
+      // Result: positive = refund, negative = owe
+      const result = withheld - tax;
+      const isRefund = result >= 0;
+
+      const formatted = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(Math.abs(result));
+      const low = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(Math.abs(result) * 0.85);
+      const high = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(Math.abs(result) * 1.3);
+
+      document.getElementById('resultAmount').textContent = (isRefund ? '' : '-') + formatted;
+      document.getElementById('resultRange').textContent = `Estimated range: ${low} – ${high} ${isRefund ? 'refund' : 'owed'}`;
+
+      const taxFormatted = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(tax);
+      const dedFormatted = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(std + extraDed);
+
+      document.getElementById('resultBreakdown').innerHTML = `
+        <div class="breakdown-item">
+          <div class="breakdown-item-label">Est. Tax Owed</div>
+          <div class="breakdown-item-value">${taxFormatted}</div>
+        </div>
+        <div class="breakdown-item">
+          <div class="breakdown-item-label">Est. Withheld</div>
+          <div class="breakdown-item-value">${new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0}).format(withheld)}</div>
+        </div>
+        <div class="breakdown-item">
+          <div class="breakdown-item-label">Deductions Applied</div>
+          <div class="breakdown-item-value">${dedFormatted}</div>
+        </div>
+        <div class="breakdown-item">
+          <div class="breakdown-item-label">Child Credits</div>
+          <div class="breakdown-item-value">${new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0}).format(childCredit)}</div>
+        </div>
+      `;
+
+      document.getElementById('estimateResult').classList.add('show');
+      document.getElementById('estimatorDisclaimer').style.display = 'flex';
+
+      // Smooth scroll to result
+      document.getElementById('estimateResult').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  </script>
+</body>
+</html>
